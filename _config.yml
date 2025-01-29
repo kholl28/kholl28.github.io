@@ -147,10 +147,10 @@ collections:
   news:
     defaults:
       layout: post
-    output: true
+    output: false
     permalink: /:collection/:title/
   projects:
-    output: true
+    output: false
     permalink: /:collection/:title/
 
 # -----------------------------------------------------------------------------
@@ -198,6 +198,7 @@ exclude:
   - _pages/publications.md
   - _pages/teaching.md
   - _pages/profiles.md
+  - _pages/dropdown.md
   - _posts/
   - assets/jupyter/blog.ipynb
   
