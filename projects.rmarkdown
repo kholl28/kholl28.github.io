@@ -1,0 +1,351 @@
+# Final Project
+
+
+---
+title: "Investigating the Effect of Violence on Risky Sexual Behaviour: A Large, Nationally Representative Sample of U.S. High Schoolers"
+author: "Kai Holl"
+format: html
+editor: visual
+---
+
+```{r echo = FALSE}
+# Independent variables were added in a hierarchical procedure, first the main effect of
+# maltreatment status was entered to determine if the sexual risk behavior differed as a
+# function of being maltreated. Next, gender was added to examine overall gender differences
+# and the maltreatment main effect after controlling for gender. Third, a maltreatment by
+# gender interaction was added to test whether any of the outcomes differed for maltreated
+# males versus comparison males, for maltreated females versus comparison females, or for
+# maltreated males versus maltreated females. 
+
+# For continuous variables such as age at 1st intercourse and number of sexual partners, MANCOVA was used to determine mean
+# differences between groups. 
+
+# For dichotomous variables (e.g. ever been/gotten someone
+# pregnant) logistic regression was used to compute whether being maltreated increased the
+# risk for the outcome. 
+
+# For age at first pregnancy and number of pregnancies, only those who
+# had been/gotten someone pregnant were included in the analyses, A zero-inflated Poisson
+# regression model was used to examine the number of pregnancies whereas age at first
+# pregnancy was examined using ANOVA.
+
+# Note: the likely closest package you can get to applying sampling weights the way SAS-callable SUDAAN does is the "survey" package. The survey package does integrate with some other packages, though if you are just doing multiple regression, then the svyglm() function should suffice.
+```
+
+
+## Description
+
+-   a text description and summary statistics of your data. How was your data collected by its original collectors? What are the important variables of interest for your research question? Use functions like glimpse() and summary() to present your data.
+
+The yrbs dataset comes from the Youth Risk Behaviour Surveillance System (YRBSS), a set of surveys run by the Centers for Disease Controla and Prevention (CDC) that track behaviours and experiences that lead to poor health in American students from grades 9 through 12. The surveys are administered every other year; from 1991 through 2021, the YRBSS has collected data from more than 5 million high school students in more than 2,200 separate surveys.
+
+The YRBSS monitors six categories of priority health-risk behaviours among students, however for this analysis, specific attention has been paid to the categories involving behaviors that contribute to unintentional injuries and violence as well as sexual behaviours that contribute to HIV infection, other sexually transmitted infections, and unintended pregnancy.
+
+Data are obtained from multiple sources including a national school-based survey conducted by the CDC as well as school-based
+
+## Research Question
+
+1.  What is the relationship between
+
+## Hypotheses
+
+-   Are there any existing hypotheses that weren’t tested before that you intend to test for the first time or ones that you want to modify and test, or one you came up with, or one that’s been tested and you’ll test with new data. What will be your contribution?
+
+## Descriptive Statistics
+
+-   a text description and summary statistics of your data. How was your data collected by its original collectors? What are the important variables of interest for your research question? Use functions like glimpse() and summary() to present your data.
+
+The yrbs2021 data frame has 17,232 rows and 242 columns. The data was collected from a nationally-representative sample of American high schools from grades 9 to 12 during the year 2021. Each row represents a single student; that is to say, the sample size for this dataset is 17,232 students.
+
+\*\*\*\*\*\*\*The sample was restricted to only the sexually active adolescents, leaving a sample of 251 (n=82 comparison; n= 169 maltreated) mean age = 18.49 years (SD=1.46).
+
+### **Variables of Interest**
+
+Independent variables: (1) experience of abuse (dichotomous), (2) lifetime forced sexual intercourse, (3) number of experiences of sexual violence over past 12 months, (4) number of experiences of sexual dating violence over past 12 months, (5) number of experiences of physical dating violence over past 12 months
+
+Dependent variables: (1) age at first sexual intercourse, (2) number of lifetime sexual partners, (3) condom use during last intercourse, (4) birth control usage during last intercourse, (5) use of drugs or alcohol during last intercourse
+
+See below for further information about the variables of interest.
+
+#### **Abuse**
+
+abuse = whether they have experienced abuse or violence
+
+-   dichotomous
+
+-   
+
+forcedsex = liftetime history of forced sexual intercourse
+
+-   dichotomous
+
+<!-- -->
+
+-   (1 = yes, 0 = no)
+
+sex.viol = number of times student experienced sexual violence (forced unwanted sexual contact) during the past 12 months
+
+-   continuous
+
+<!-- -->
+
+-   (1 = 0 times, 2 = 1 time, 3 = 2 or 3 times, 4 = 4 or 5 times, 5 = 6 or more times)
+
+sex.date.viol = number of times someone student was dating or going out with forced unwanted sexual contact during the past 12 months
+
+-   continuous
+
+<!-- -->
+
+-   (1 = did not date, 2 = 0 times, 3 = 1 time, 4 = 2 or 3 times, 5 = 4 or 5 times, 6 = 6 or more times
+
+phys.date.viol = number of times someone student was dating or going out with physically hut them on purpose during the past 12 months
+
+-   continuous
+
+<!-- -->
+
+-   (1 = did not date, 2 = 0 times, 3 = 1 time, 4 = 2 or 3 times, 5 = 4 or 5 times, 6 = 6 or more times)
+
+#### **risky sex behaviours**
+
+sex.13 = age at first sexual intercourse
+
+-   continuous
+
+-   (range from 11 years old (or younger) to 17 years old (or older))
+
+num.sex = lifetime number of sexual partners
+
+-   (0 = never had sex, 1 = 1 person, 2 = 2 people, 3 = 3 people, 4 = 4 people, 5 = 5 people, 6 = 6 *or more* people)
+
+contraception = use of any form of contraceptives (condom, birth control pill, IUD, etc.) during last sexual intercourse, coded from original birth control and condom use survey questions
+
+-   dichotomous
+
+-   (0 = no, did NOT use any contraception, 1 = yes, DID use a form of contraception)
+
+drugs.sex = under influence of alcohol or drugs during last sexual intercourse
+
+-   dichotomous
+
+-   (0 = no, was NOT under the influence, 1 = yes, WAS under the influence)
+
+STI???
+
+The four categories are low maltreatment, moderate emotional neglect only, severe physical and emotional abuse, and severe sexual abuse.
+
+Risky sexual behaviors included not using condoms, having five or more lifetime partners, having sex in return for money, having sex with someone known to be infected with a sexually transmitted disease, having a partner at least five years older than themselves, and having sex while under the influence of drugs or alcohol.
+
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+library(dplyr)
+library(ggplot2)
+library(ggcorrplot)
+library(haven)
+library(readr)
+library(foreign)
+library(survey)
+library(SAScii)
+library(utils)
+library(stargazer)
+library(naniar)
+library(tidyverse)
+```
+
+```{r}
+# ********************************
+# Data Sources
+# ********************************
+# To download the datasets: https://www.cdc.gov/healthyyouth/data/yrbs/data.htm#nationalyear
+
+# *DATA USER GUIDE*: file:///Users/kaiholl/Documents/DACSS%20603/2021_YRBS_Data_Users_Guide_508.pdf
+
+# Data Portal: https://data.cdc.gov/browse?category=Youth+Risk+Behaviors
+
+# Results: https://www.cdc.gov/healthyyouth/data/yrbs/results.htm
+
+# Results Explorer: https://nccd.cdc.gov/Youthonline/App/Results.aspx?TT=A&OUT=0&SID=HS&QID=QQ&LID=XX&YID=2021&LID2=&YID2=&COL=S&ROW1=N&ROW2=N&HT=QQ&LCT=LL&FS=S1&FR=R1&FG=G1&FA=A1&FI=I1&FP=P1&FSL=S1&FRL=R1&FGL=G1&FAL=A1&FIL=I1&FPL=P1&PV=&TST=False&C1=&C2=&QP=G&DP=1&VA=CI&CS=Y&SYID=&EYID=&SC=DEFAULT&SO=ASC
+
+```
+
+```{r warning = FALSE, message = FALSE}
+#/****************************************************************************************/
+# /*  Only run this section of the code if you want to download the data set! Note: it    */
+# /*  will take 3-5 minutes to fully download.                                            */
+# /*                                                                                      */
+# parse.SAScii(sas_ri = "/Users/kaiholl/Documents/DACSS 603/2021-SADC-SAS-Input-Program.sas",
+#              beginline = 24)
+# 
+# yrbs <- read.SAScii(fn = "/Users/kaiholl/Documents/DACSS 603/SADC_2021_National.dat",
+#                     sas_ri = "/Users/kaiholl/Documents/DACSS 603/2021-SADC-SAS-Input-Program.sas" ,
+#                     beginline = 24 )
+# 
+# # include only 2021 data
+# yrbs2021 <- yrbs %>%
+#   dplyr::filter(YEAR == 2021)
+# 
+# # *********************
+# # write csv of 2021 data to drive
+# write.csv(yrbs2021, "yrbs2021.csv")
+#/*                                                                                      */
+#/****************************************************************************************/
+```
+
+```{r}
+# read csv of 2021 data to ensure fast data upload
+# ********************************
+yrbs2021 <- read.csv("yrbs2021.csv")
+# ********************************
+
+```
+
+```{r}
+# str(yrbs2021)
+
+# summary(yrbs2021$forcedsex)
+```
+
+
+## Visualization
+
+-   expand descriptive statistics with visualizations, e.g. scatter plots among key variables, box and whisker plots, histograms etc.
+
+
+```{r}
+# Editing & Cleaning
+# ********************************
+# editing column names
+colnames(yrbs2021) <- tolower(colnames(yrbs2021))
+
+which(colnames(yrbs2021)=="q8") # 28
+which(colnames(yrbs2021)=="q87") # 105
+
+old_columns <- colnames(yrbs2021[28:105])
+new_columns <- c("seatbelt", "ridedrunk", "drunkdrive", "textdrive", "weaponschool", "guncarry", "safeschool", "schoolthreat",
+                 "fight12", "fightschool", "viol.hood", "forcedsex", "sex.viol", "sex.date.viol", "phys.date.viol",
+                 "schoolbully", "e.bully", "sad", "con.suicide", "suicideplan12", "attempt.suicide", "injury.suicide",
+                 "cig.use", "init.cig", "current.cig", "cig.10", "e.cig", "current.e.cig", "evp.store", "smokeless",
+                 "cigar", "tobacco.cess", "init.alcohol", "current.alcohol", "current.binge", "drinks.30", "source.alcohol",
+                 "cannabis", "init.cannabis", "current.cannabis", "syn.cannabis", "painmed", "cocaine", "inhalant", "heroin",
+                 "meth", "ecstasy", "inject.drug", "drugs.school", "ever.sex", "sex.13", "num.sex", "current.sex", "drugs.sex",
+                 "condom", "birthcontrol", "perc.weight", "weightloss", "fruitjuice", "fruit", "salad", "potato", "carrot", "vegetable",
+                 "no.soda", "no.milk", "breakfast", "phys.activity", "screentime", "PE", "sports", "concussion", "HIVtest", "STDtest",
+                 "oralhealth", "mentalhealth", "sleep", "homeless")
+
+yrbs2021 <- yrbs2021 %>%
+  rename_at(vars(old_columns), function(x) new_columns)
+
+yrbs2021[yrbs2021=='" "']<-NA
+
+# recoding factor variables
+
+yrbs2021 <- yrbs2021 %>%
+  mutate(dplyr::across(c("q64", "ever.sex", "drugs.sex", "condom", "birthcontrol", "forcedsex", "sex.viol", "sex.date.viol", "phys.date.viol"), as.factor))
+ 
+class(yrbs2021$q64) # checking work
+
+# # Filtering dataset to only include sexually active students
+
+yrbs2021x <- yrbs2021 %>% 
+  drop_na(q64, ever.sex, drugs.sex, condom, birthcontrol, num.sex, sex.13, current.sex) %>% 
+  mutate(sex.active = case_when(
+    ever.sex != "2" | sex.13 != 1 | num.sex != 1 | drugs.sex != "1" | condom != "1" | birthcontrol != "1" | q64 != "1" ~ "1", # yes, sexually active
+    ever.sex == "2" & sex.13 == 1 & num.sex == 1 & drugs.sex == "1" & condom ==  "1" & birthcontrol == "1" & q64 == "1" ~ "0"), .before = ever.sex) # no, NOT sexually active
+
+    # ever.sex == "1" & # yes, sexually active
+    # sex.13 == 2 | sex.13 == 2 | sex.13 == 3 | sex.13 == 4 | sex.13 == 5 | sex.13 == 6 | sex.13 == 7 | sex.13 == 8 &
+    # num.sex == 2 | num.sex == 3 | sex.13 == 4 | sex.13 == 5 | sex.13 == 6 | sex.13 == 7 &
+    # current.sex == 2 | current.sex == 2 | current.sex == 3 | current.sex == 4 | current.sex == 5 | current.sex == 6 | current.sex == 7 | current.sex == 8 &
+    # drugs.sex == "2" | drugs.sex == "3" &
+    # condom == "2" | condom == "3" &
+    # birthcontrol == "2" | birthcontrol == "3" | birthcontrol == "4" | birthcontrol == "5" | birthcontrol == "6" | birthcontrol == "7" | birthcontrol == "8" &
+    # q64 == "2" | q64 == "3" | q64 == "4" ~ "1",
+
+
+
+# yrbs2021$sex.active <- ifelse((yrbs2021$ever.sex != "2") | (yrbs2021$sex.13 != 1) | (yrbs2021$num.sex != 1) | (yrbs2021$current.sex != 1) | (yrbs2021$drugs.sex != "1") | (yrbs2021$condom != "1") | (yrbs2021$birthcontrol != "1") | (yrbs2021$q64 != "1"), "1", "0")
+
+yrbs2021 <- yrbs2021 %>% 
+  drop_na(q64, ever.sex, drugs.sex, condom, birthcontrol, num.sex, sex.13, current.sex)
+
+yrbs2021$sex.active <- ifelse((yrbs2021$ever.sex == "2") & (yrbs2021$sex.13 == 1) & (yrbs2021$num.sex == 1) & (yrbs2021$drugs.sex == "1") & (yrbs2021$condom == "1") & (yrbs2021$birthcontrol == "1") & (yrbs2021$q64 == "1"), "0", "1")
+
+distinct(yrbs2021, sex.active)
+
+yrbs2021 <- yrbs2021 %>% 
+  filter(!sex.active == "0") # creating new dataset
+
+distinct(yrbs2021x, sex.active) # checking work
+distinct(yrbs2021x, sex.13)
+
+# recoding variables
+
+yrbs2021 <- yrbs2021 %>%
+mutate(sex.13 = case_when(
+  sex.13 == 2 ~ 11, # or younger
+  sex.13 == 3 ~ 12,
+  sex.13 == 4 ~ 13,
+  sex.13 == 5 ~ 14,
+  sex.13 == 6 ~ 15,
+  sex.13 == 7 ~ 16,
+  sex.13 == 8 ~ 17)) %>%  # or older
+  mutate(num.sex = case_when( # recoding num.sex variable
+    num.sex == 2 ~ 1,
+    num.sex == 3 ~ 2,
+    num.sex == 4 ~ 3,
+    num.sex == 5 ~ 4,
+    num.sex == 6 ~ 5,
+    num.sex == 7 ~ 6)) %>%
+  mutate(forcedsex = case_when(
+    forcedsex == "2" ~ 0)) %>% 
+  mutate(drugs.sex = case_when(
+    "2" ~ "1", # yes, WAS under the influence
+    "3" ~ "0")) # no, was NOT under the influence
+  mutate(factor(contraception = case_when( # creating contraception column that combines both birthcontrol and condom variables
+  birthcontrol == "2" & condom == "3" ~ "0",  # did NOT use contraception
+  birthcontrol != "2" | condom != "3" ~ "0", # DID use contraception
+  birthcontrol == "8" ~ NA)))
+    # birthcontrol == "3" | birthcontrol == "4" | birthcontrol == "5" | birthcontrol == "6" | birthcontrol == "7" | condom == "2" ~ "1", # DID use contraception
+mutate(factor(abuse = case_when(
+  forcedsex == 1 | sex.viol == 1 | sex.date.viol == 2 | phys.date.viol == 2 ~ "1", # has experienced abuse
+  forcedsex != 1 & sex.viol != 1 & sex.date.viol != 2 & phys.date.viol != 2 ~ "0"))) # has NOT experienced abuse
+```
+
+```{r}
+# --------------------------------
+# variables of interest
+# --------------------------------
+# ever.sex: ever had sex? y/n
+sum(is.na(yrbs2021$ever.sex)) # 5,075, 29.45%
+# sex.13: age when had sex for first time
+sum(is.na(yrbs2021$sex.13)) # 1,733, 10%
+# num.sex: lifetime \# of sexual partners
+sum(is.na(yrbs2021$num.sex)) # 1,776, 10%
+# drugs.sex: drink alcohol or do drugs last time you had sex?
+sum(is.na(yrbs2021$drugs.sex)) # 5,306, 31%
+# condom: condom use during last time you had sex?
+sum(is.na(yrbs2021$condom)) # 1,753, 10%
+# birthcontrol = safe sex methods
+sum(is.na(yrbs2021$birthcontrol)) # 1,360, 8%
+# Q65 = sexual identity
+sum(is.na(yrbs2021$Q65))
+
+# Q64 = sex of sexual partners 
+# HIVtest = tested for HIV?
+# STDtest: tested for STIs other than HIV
+# QNIUDIMP?
+
+sum(is.na(yrbs2021$forcedsex)) # 3,396
+sum(is.na(yrbs2021$sex.viol)) # 3,074
+sum(is.na(yrbs2021$sex.date.viol)) # 3,895
+sum(is.na(yrbs2021$schoolthreat)) # 122
+
+```
+
+
+## References:
+
+https://www.eurekalert.org/news-releases/713846
+
