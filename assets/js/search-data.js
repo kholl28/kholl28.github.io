@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-projects",
           title: "projects",
-          description: "A growing collection of your cool projects.",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -77,6 +77,11 @@ ninja.data = [{
           description: "a project with a background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/5_project/";
+            },},{id: "projects-the-impact-of-crime-severity-and-recidivism-on-attitudes-towards-felon-voting-rights",
+          title: 'The Impact of Crime Severity and Recidivism on Attitudes towards Felon Voting Rights...',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/602_GroupProjectReport/";
             },},{id: "projects-project-6",
           title: 'project 6',
           description: "a project with no image",
