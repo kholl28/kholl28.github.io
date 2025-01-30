@@ -1,21 +1,24 @@
 ---
+layout: page
 title: "The Impact of Crime Severity and Recidivism on Attitudes towards Felon Voting Rights"
-subtitle: "602 (Fall 2023)"
-author: Kenneth Bufford, Kai Holl, Esiquio Iglesias Guerra
-format: 
-  html:
-    toc: true
-    toc-depth: 2
-    toc-title: Contents
-    toc-location: left
-    html-math-method: katex
-    theme: flatly
-    smooth-scroll: true
-    link-external-icon: true
-    link-external-newwindow: true
-    citations-hover: true
-    footnotes-hover: true
-    font-size: 80%
+img: assets/img/voting.png
+importance: 3
+# description: "602 (Fall 2023)"
+# author: Kenneth Bufford, Kai Holl, Esiquio Iglesias Guerra
+# format: 
+ # html:
+  #  toc: true
+  #  toc-depth: 2
+  #  toc-title: Contents
+  #  toc-location: left
+  #  html-math-method: katex
+  #  theme: flatly
+  #  smooth-scroll: true
+   # link-external-icon: true
+  #  link-external-newwindow: true
+   # citations-hover: true
+   # footnotes-hover: true
+   # font-size: 80%
 ---
 
 <!--
