@@ -57,11 +57,6 @@ ninja.data = [{
           description: "with background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-dacss-758-final-project",
-          title: 'DACSS 758 Final Project',
-          description: "",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/index/";
             },},{id: "projects-final-project",
           title: 'Final_project',
           description: "",
