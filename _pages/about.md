@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Data/Research Analyst, M.S. Student
+subtitle: Data/Research Analyst
 
 profile:
   align: right
@@ -24,7 +24,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Kai Holl is an accomplished researcher and data analyst with a strong academic foundation and diverse experience in psychology, social science, and analytics. Currently pursuing an M.A. in Data Analytics and Computational Social Science at the University of Massachusetts Amherst, Kai combines technical expertise with a deep understanding of research methodologies to deliver actionable insights.  Kai has excelled in research roles, such as their tenure at the Social Processes and Health Lab, where she maintained complex data systems, conducted comprehensive literature reviews, and collaborated on data collection through interviews and surveys. These efforts have contributed to significant research outcomes and presentations, including work on behavior change techniques and self-perception.    
+Kai Holl is an accomplished researcher and data analyst with a strong academic foundation and diverse experience in psychology, social science, and analytics. Since graduating with an M.S. in Data Analytics and Computational Social Science from the University of Massachusetts Amherst (UMass Amherst) in May 2025, she currently works as a Data Visualization Specialist with the Assessment, Survey, and Effectiveness Research (ASER) team at UMass Amherst. 
 
-With expertise in tools like R, Python, SQL, Tableau, and GIS, Kai is adept at cleaning, analyzing, and visualizing data to support strategic decision-making. Her dedication to detail, paired with exceptional organizational skills, positions her as a valuable contributor to research-driven and data-centric initiatives.
+Kai combines technical expertise with a deep understanding of research methodologies to deliver actionable insights.  Kai has excelled in research roles, such as her tenure at the Social Processes and Health Lab at UMass Amherst, where she maintained complex data systems, conducted comprehensive literature reviews, and collaborated on data collection via interviews and surveys. These efforts have contributed to significant research outcomes and presentations, including work on behavior change techniques and self-perception.    
+
+With expertise in tools like R, Python, Tableau, and GIS, Kai is adept at cleaning, analyzing, and visualizing data to support strategic decision-making. Her dedication to detail, paired with exceptional organizational skills, positions her as a valuable contributor to research-driven and data-centric initiatives.
 
