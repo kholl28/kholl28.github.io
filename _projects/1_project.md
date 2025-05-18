@@ -1,69 +1,24 @@
 ---
 layout: page
-title: project 1
+title: Menstrual Period Predictor ML Model
 description: with background image
 img: assets/img/12.jpg
 importance: 1
-category: work
+category: personal
 related_publications: true
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+This project involved creating an accurate regression machine learning model that can be used to predict the start date of a person's next menstrual period (the target variable) based on their last three period dates, age, and BMI (the predictor variables).
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+The user's self-reported age and BMI will be used as secondary predictor variables that will adjust the final prediction outputted by the model.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+Previous research has indicated that age and BMI has a statistically significant relationship with menstrual cycle length, in that women in different age groups and BMI categories experience significant differences in cycle length. Thus, the model will adjust its final prediction based on this User-inputted information.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+This will be achieved through the use of a machine learning model that will be trained using data from a 2013 study by [Fehring et al.](https://epublications.marquette.edu/cgi/viewcontent.cgi?article=1002&context=data_nfp) titled "Randomized comparison of two internet-supported natural family planning methods". The dataset is freely-available to the public via Marquette University's e-Publications site (which can be accessed [here](https://epublications.marquette.edu/data_nfp/7/)) and is in .csv format.
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+This study collected data of the menstrual cycles of 159 anonymous American women over 12 months, with each woman having approximately 10 cycles logged. For each cycle, information such as the length of the cycle, the overall mean cycle length, estimated day of ovulation, length of menstruation, etc. is logged.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+Although no model can predict with 100% accuracy the exact start date of someone's next period, identifying patterns among individual people in the lengths of each of their cycles would provide a person with more accurate, informed information, reducing uncertainty and allowing people to be more prepared.
 
 {% raw %}
 
