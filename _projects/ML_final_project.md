@@ -1,6 +1,12 @@
-# Menstrual Cycle Prediction Tool Using Age and BMI as Secondary Predictor Variables
-
-Author: Kai Holl
+---
+layout: page
+title: Menstrual Cycle Prediction Tool
+description: with ML model
+img: assets/img/12.jpg
+importance: 1
+category: school
+related_publications: false
+---
 
 **Helpful Links**
 
