@@ -57,11 +57,6 @@ ninja.data = [{
           description: "with background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-period-predictor-tool-with-python",
-          title: 'Period_predictor_tool_with_python',
-          description: "",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/Period_Predictor_Tool_with_Python/";
             },},{
         id: 'social-email',
         title: 'email',
