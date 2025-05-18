@@ -57,6 +57,11 @@ ninja.data = [{
           description: "with background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
+            },},{id: "projects-menstrual-cycle-prediction-tool",
+          title: 'Menstrual Cycle Prediction Tool',
+          description: "with ML model",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ML_final_project/";
             },},{
         id: 'social-email',
         title: 'email',
